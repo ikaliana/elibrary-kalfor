@@ -46,6 +46,7 @@
         @endif
         <ul class="navbar-nav">
 
+          @if(1==0)
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ route('documents.list') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <p>Categories</p>
@@ -56,6 +57,7 @@
               <a class="dropdown-item" href="{{ route('documents.category', 'vector') }}">Vector</a>
             </div>
           </li>
+          @endif
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ route('documents.list') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
