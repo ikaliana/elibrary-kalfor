@@ -18,7 +18,9 @@
 @endsection
 
 @section('main_content')
-	<h2 class="title">
+	@include('documents.filter')
+
+	<h2 class="title clearfix">
 		{{ $type }}
 		<hr>
 	</h2>
@@ -27,7 +29,11 @@
 		<div class="row row-cols-1">
 			<ul class="list-unstyled">
 			@foreach($list as $doc)
-				<li class="media pb-3">
+				@php
+					$category_class = "category-0";
+					if($doc['category'] != 0) $category_class .= " category-".$doc['category'];
+				@endphp
+				<li class="media pb-3 {{ $category_class }}">
 					<img src="{{ asset('img/icons/icons8-'.$doc['icon'].'-64.png') }}" class="mr-3" alt="{{ $doc['icon'] }} file">
 					<div class="media-body">
 						<a href="{{ route('documents.show', $doc['id'] ) }}">
@@ -47,5 +53,11 @@
 	        </ul>
 		</div>
 	</div>
+
+@endsection
+
+@section('js')
+
+	@include('documents.filterjs')
 
 @endsection
