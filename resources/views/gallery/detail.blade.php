@@ -71,13 +71,6 @@
 			<button type="button" class="btn btn-primary btn-sm btn-add-document" data-toggle="tooltip" data-placement="left" title="Add document">
 				<i class="now-ui-icons ui-1_simple-add"></i>
 			</button>
-			<!-- <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="sr-only">Toggle Dropdown</span>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item btn-upload-doc">Upload</a>
-				<a class="dropdown-item">Generate</a>
-			</div> -->
 		</div>
 
 		<hr>
@@ -222,12 +215,14 @@
 			$("#description").val('');
 			$("#license").val('');
 			$('#visibility').prop('checked','');
+			$("#datasource").val('');
 
 			$("#type").append( new Option('Document','') );
 			$.each(msg, function(key,item) {
 	            $("#type").append( new Option(item,item) );
 	        });
 	        $("#type").val('');
+	        $(".map-row").hide();
 
 			$("#modalUpload").modal('show');
 		})
@@ -240,6 +235,12 @@
 		});
 	});
 
+	$("#type").on("change", function() {
+		var val = $(this).val();
+		if (val == "Map") $(".map-row").show();
+		else $(".map-row").hide();
+	})
+
 	$(".btn-upload-doc").on("click", function(){
 		$("#modalspinner").modal('show');
 
@@ -248,14 +249,6 @@
 
 		var private = $('#visibility').prop('checked');
 
-		// item.name = $("#name").val();
-		// item.description = $("#description").val();
-		// item.visibility = (private) ? 0 : 1;
-		// item.license = $("#license").val();
-		// item.type = $("#type").val();
-		// item.gallery_id = $("#gallery_id").val();
-		// item["_token"] =  $('#token').val();
-
 		var formData = new FormData();
 		formData.append('file', $('#file')[0].files[0]);
 		formData.append('name', $("#name").val());
@@ -263,6 +256,7 @@
 		formData.append('visibility', ((private) ? 0 : 1));
 		formData.append('license', $("#license").val());
 		formData.append('type', $("#type").val());
+		formData.append('datasource', $("#datasource").val());
 		formData.append('gallery_id', $("#gallery_id").val());
 		formData.append('_token', $("#token").val());
 
