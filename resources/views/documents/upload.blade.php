@@ -51,6 +51,12 @@
                   <select class="form-control" id="type"></select>
                 </div>
               </div>
+              <div class="form-group row map-row">
+                <label for="license" class="col-sm-3 col-form-label">Datasource</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="datasource" rows="1" placeholder="Datasource"></textarea>
+                </div>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
