@@ -11,8 +11,10 @@ class GalleryHelper extends ApiHelper
 
     public function __construct()
     {
-        $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-        $this->api_url = $protocol . $_SERVER['HTTP_HOST'] . '/api/gallery';
+        // $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+        // $host = !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : env('APP_URL');
+        // $this->api_url = $protocol . $host . '/api/gallery';
+        $this->api_url = url('/api') . '/gallery';
     }
 
 	public function List() 
