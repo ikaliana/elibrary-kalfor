@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('gallery', 'Web\GalleryController');
 
-Route::get('/', 'Web\DocumentController@recent')->name('home');
 Route::get('documents/all/{type?}', 'Web\DocumentController@list')->name('documents.list');
 Route::get('documents/category/{category?}', 'Web\DocumentController@category')->name('documents.category');
 Route::get('documents/show/{id}', 'Web\DocumentController@show')->name('documents.show');
@@ -30,3 +29,4 @@ Route::get('documents/types', 'Web\DocumentController@types')->name('documents.t
 Route::post('documents/save', 'Web\DocumentController@store')->name('documents.save');
 Route::get('documents/search', 'Web\DocumentController@search')->name('documents.search');
 
+Route::get('/', 'Web\DocumentController@recent')->name('home');
