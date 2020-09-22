@@ -18,8 +18,10 @@ class DocumentHelper extends ApiHelper
 
     public function __construct()
     {
-        $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-        $this->api_url = $protocol . $_SERVER['HTTP_HOST'] . '/api/document';
+        // $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+        // $host = !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : env('APP_URL');
+        // $this->api_url = $protocol . $host . '/api/document';
+        $this->api_url = url('/api') . '/document';
     }
 
 	public function List($type,$page=null) 
@@ -86,7 +88,7 @@ class DocumentHelper extends ApiHelper
 	    	abort($statusCode, $response->getBody());
 	}
 
-	public function Save(Document $document, $file)
+	public function Save(Document $document, $file, $datasource)
 	{
 		$isNew = is_null($document->id);
 		$method = ($isNew) ? "POST" : "PUT";
@@ -98,6 +100,7 @@ class DocumentHelper extends ApiHelper
 			[ 'name' => 'visibility', 'contents' => $document->visibility ],
 			[ 'name' => 'license', 'contents' => $document->license ],
 			[ 'name' => 'type', 'contents' => $document->type ],
+			[ 'name' => 'datasource', 'contents' => $datasource ],
 			[ 'name' => 'gallery_id', 'contents' => $document->gallery_id ],
 			[
                 'Content-type' => 'multipart/form-data',
