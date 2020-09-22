@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/category', 'Api\CategoryController@index');
+
 Route::get('/gallery', 'Api\GalleryController@index');
 Route::get('/gallery/{id}', 'Api\GalleryController@show');
 Route::post('/gallery', 'Api\GalleryController@store');
