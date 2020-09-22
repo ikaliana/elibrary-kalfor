@@ -16,6 +16,7 @@ class CategorySeeder extends Seeder
             ['name' => 'Publication'],
             ['name' => 'Raster'],
             ['name' => 'Vector'],
+            ['name' => 'Module'],
         ]);
     }
 }
