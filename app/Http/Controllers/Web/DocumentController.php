@@ -68,8 +68,9 @@ class DocumentController extends Controller
         $input = $request->only(['name', 'description', 'visibility','file','license','type','gallery_id']);
 
         $document = (new Document)->forceFill($input);
+        $datasource = $request->datasource;
 
-        $item = $this->helper->Save($document,$request->file('file'));
+        $item = $this->helper->Save($document,$request->file('file'),$datasource);
         return $item;
     }
 
