@@ -70,7 +70,7 @@ $factory->define(Document::class, function (Faker $faker) {
         'fileformat' => $randomType['mime'],
         'uploaded_date' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
         'description' => $faker->text($maxNbChars = 500),
-        'category' => $faker->numberBetween($min = 0, $max = 3),
+        'category' => $faker->numberBetween($min = 1, $max = 5),
         'visibility' => 1,
         'license' => $faker->uuid,
         'filesize' => 1,
