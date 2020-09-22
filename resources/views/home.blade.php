@@ -10,11 +10,11 @@
           <form method="GET" action="{{ route('documents.search') }}">
             <div class="input-group input-lg">
               <div class="input-group-prepend">
-                <span class="input-group-text border border-secondary border-right-0">
+                <span class="input-group-text border border-right-0">
                   <i class="now-ui-icons ui-1_zoom-bold"></i>
                 </span>
               </div>
-              <input id="q" name="q" type="text" class="form-control border border-secondary border-left-0" placeholder="Enter keywords...">
+              <input id="q" name="q" type="text" class="form-control border border-left-0" placeholder="Enter keywords...">
             </div>
             <div class="send-button">
               <button type="submit" class="btn btn-primary btn-round btn-lg">Search</button>
@@ -29,6 +29,7 @@
     <div class="container">
       <h2 class="title text-center">E-Library Latest documents</h2>
       <div class="row row-cols-1">
+@if (count($list) > 0)
         <ul class="list-unstyled col-md-9 ml-auto mr-auto">
         @foreach($list as $doc)
           <li class="media pb-1">
@@ -47,6 +48,9 @@
           </li>
         @endforeach
         </ul>
+@else
+        <p class="text-center">No new documents in this library</p>
+@endif
       </div>
     </div>
   </div>
