@@ -7,6 +7,7 @@ use App\Models\Document;
 use App\Models\Image;
 use App\Models\Audio;
 use App\Models\Video;
+use App\Models\Map;
 use App\Models\Category;
 use App\Helper\DocumentHelper;
 use Illuminate\Http\Request;
@@ -60,6 +61,7 @@ class DocumentControllers extends Controller
             //save file to repository folder
             $path = 'doc_repository/'.$document->gallery_id.'/';
             $file->move($path, $filename);
+            $datasource = $request->datasource;
 
             //process document attributes
             switch(Str::lower($request->type)) {
@@ -71,6 +73,9 @@ class DocumentControllers extends Controller
                     break;
                 case 'video':
                     $this->SaveVideo($document,$path,$filename);
+                    break;
+                case 'map':
+                    $this->SaveMap($document,$datasource);
                     break;
             }
 
@@ -128,6 +133,13 @@ class DocumentControllers extends Controller
         $video->width = (isset($file_info['video']['resolution_x'])) ? $file_info['video']['resolution_x'] : 0;
         $video->duration = (isset($file_info['playtime_seconds'])) ? (int)$file_info['playtime_seconds'] : 0;
         $this->LinkAttribute($video,$document);
+    }
+
+    private function SaveMap($document,$datasource)
+    {
+        $map = new Map();
+        $map->datasource = $datasource;
+        $this->LinkAttribute($map,$document);
     }
 
     public function show($id)
@@ -294,18 +306,5 @@ class DocumentControllers extends Controller
         return $document;
     }
 
-    // public function check() 
-    // {
-    //     $path = 'doc_repository/16/file_example_MP4_480_1_5MG.mp4';
-    //     $getID3 = new \getID3;
-    //     $file_info = $getID3->analyze($path);
-
-    //     $meta = [
-    //         "duration" => (isset($file_info['playtime_seconds'])) ? (int)$file_info['playtime_seconds'] : 0,
-    //         "height" => (isset($file_info['video']['resolution_y'])) ? $file_info['video']['resolution_y'] : 0,
-    //         "width" => (isset($file_info['video']['resolution_x'])) ? $file_info['video']['resolution_x'] : 0
-    //     ];
-
-    //     return $meta;
-    // }
+    
 }
