@@ -100,6 +100,7 @@ class DocumentHelper extends ApiHelper
 			[ 'name' => 'visibility', 'contents' => $document->visibility ],
 			[ 'name' => 'license', 'contents' => $document->license ],
 			[ 'name' => 'type', 'contents' => $document->type ],
+			[ 'name' => 'category', 'contents' => $document->category ],
 			[ 'name' => 'datasource', 'contents' => $datasource ],
 			[ 'name' => 'gallery_id', 'contents' => $document->gallery_id ],
 			[
