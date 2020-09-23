@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Document;
+use App\Models\Category;
 use App\Helper\DocumentHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -35,11 +36,12 @@ class DocumentController extends Controller
     public function list(Request $request,$type=null) 
     {
         $list = $this->helper->List($type);
+        $category = Category::select('id','name')->get();
 
         // return $list;
         if(is_null($type)) $type = "All Files";
         else $type = Str::ucfirst(Str::lower($type))."s";
-        return view('documents.list', ['list' => $list, 'type' => $type]);
+        return view('documents.list', ['list' => $list, 'type' => $type, 'category' => $category]);
         // return view('documents.list', ['list' => $list['data'], 'type' => $type, 'data' => $list]);
     }
 
@@ -65,7 +67,7 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $this->validate_request($request);
-        $input = $request->only(['name', 'description', 'visibility','file','license','type','gallery_id']);
+        $input = $request->only(['name', 'description', 'visibility','file','license','type','gallery_id','category']);
 
         $document = (new Document)->forceFill($input);
         $datasource = $request->datasource;
@@ -76,11 +78,12 @@ class DocumentController extends Controller
 
     public function search(Request $request)
     {
+        $category = Category::select('id','name')->get();
     	$keyword = (is_null($request->q)) ? '' : $request->q;
     	$list = $this->helper->Search($keyword);
 
     	$type = "Search";
-        return view('documents.search', ['list' => $list, 'type' => $type, 'key' => $keyword]);
+        return view('documents.search', ['list' => $list, 'type' => $type, 'key' => $keyword, 'category' => $category]);
 
     	// return $list;
     }
