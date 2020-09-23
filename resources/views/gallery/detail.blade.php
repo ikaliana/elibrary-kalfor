@@ -98,7 +98,7 @@
 
 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <input type="hidden" name="gallery_id" id="gallery_id" value="{{ $item['id'] }}">
-@include('documents.upload')
+@include('documents.upload', ['category' => $category])
 
 @endsection
 
@@ -222,6 +222,7 @@
 	            $("#type").append( new Option(item,item) );
 	        });
 	        $("#type").val('');
+	        $("#category").val('1');
 	        $(".map-row").hide();
 
 			$("#modalUpload").modal('show');
@@ -256,6 +257,7 @@
 		formData.append('visibility', ((private) ? 0 : 1));
 		formData.append('license', $("#license").val());
 		formData.append('type', $("#type").val());
+		formData.append('category', $("#category").val());
 		formData.append('datasource', $("#datasource").val());
 		formData.append('gallery_id', $("#gallery_id").val());
 		formData.append('_token', $("#token").val());
