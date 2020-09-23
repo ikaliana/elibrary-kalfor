@@ -108,7 +108,7 @@
 </body>
 
 
-<div class="modal fade" id="modalspinner" data-backdrop="static" data-keyboard="false" tabindex="-1">
+<div class="modal" id="modalspinner" data-backdrop="static" data-keyboard="false" tabindex="-1">
   <div class="modal-dialog modal-sm modal-dialog-centered modal-default">
     <div class="modal-content" style="color: #fff; border: 3px solid #fff; background-color: #bcbcbc;">
       <div class="modal-body d-flex justify-content-center">
