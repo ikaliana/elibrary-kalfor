@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Helper\DocumentHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use wapmorgan\MediaFile\MediaFile;
 
 class DocumentControllers extends Controller
@@ -46,11 +47,11 @@ class DocumentControllers extends Controller
             $file = $request->file('file');
             $filename = $file->getClientOriginalName();
 
-            $input = $request->only(['name', 'description', 'visibility','license','gallery_id']);
+            $input = $request->only(['name', 'description', 'visibility','license','gallery_id','category']);
             $input["user_id"] = $this->get_current_user_id($request);
             $input["filename"] = $filename;
             $input["fileformat"] = $file->getMimeType();
-            $input["category"] = 1;
+            //$input["category"] = 1;
             $input["filesize"] = $file->getSize();
             $input["uploaded_date"] = date("Y-m-d H:i:s");
 
@@ -60,7 +61,15 @@ class DocumentControllers extends Controller
 
             //save file to repository folder
             $path = 'doc_repository/'.$document->gallery_id.'/';
+            // $path = public_path($path);
+            $path = storage_path($path);
+            
+            if(!Storage::exists($path)) {
+                Storage::makeDirectory($path, 0777, true); //creates directory
+            }
             $file->move($path, $filename);
+
+
             $datasource = $request->datasource;
 
             //process document attributes
