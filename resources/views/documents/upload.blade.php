@@ -51,6 +51,16 @@
                   <select class="form-control" id="type"></select>
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="type" class="col-sm-3 col-form-label">Category</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="category">
+                    @foreach($category as $cat)
+                    <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               <div class="form-group row map-row">
                 <label for="license" class="col-sm-3 col-form-label">Datasource</label>
                 <div class="col-sm-9">
