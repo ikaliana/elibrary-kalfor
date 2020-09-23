@@ -18,7 +18,7 @@
 @endsection
 
 @section('main_content')
-	@include('documents.filter')
+	@include('documents.filter', ['category' => $category])
 
 	<h2 class="title">
 		Search result
