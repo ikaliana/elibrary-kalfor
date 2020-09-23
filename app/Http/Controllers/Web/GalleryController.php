@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\Category;
 use App\Helper\GalleryHelper;
 use Illuminate\Http\Request;
 
@@ -64,8 +65,10 @@ class GalleryController extends Controller
     public function show($id)
     {
         $item = $this->helper->Get($id);
+        //$category = Category::select("id,name")->get();
+        $category = Category::select('id','name')->get();
         // return $item;
-        return view('gallery.detail', ['item' => $item, 'mode' => 'view']);
+        return view('gallery.detail', ['item' => $item, 'mode' => 'view', 'category' => $category]);
     }
 
     /**
