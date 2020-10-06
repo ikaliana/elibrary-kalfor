@@ -36,7 +36,7 @@ class GalleryController extends Controller
     public function create()
     {
         $item = new Gallery();
-        return view('gallery.detail', ['item' => $item, 'mode' => 'new']);
+        return view('gallery.detail', ['item' => $item, 'mode' => 'new', 'category' => []]);
     }
 
     /**
@@ -80,7 +80,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         $item = $this->helper->Get($id);
-        return view('gallery.detail', ['item' => $item, 'mode' => 'edit']);
+        return view('gallery.detail', ['item' => $item, 'mode' => 'edit', 'category' => []]);
     }
 
     /**
