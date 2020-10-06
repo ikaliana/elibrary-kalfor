@@ -28,9 +28,9 @@
 	@endphp
 
 	<dl class="row">
-		@if($item['gallery_id'])
 		<dt class="col-sm-3"><strong>Gallery</strong></dt>
 		<dd class="col-sm-9">
+			@if($item['gallery_id'])
 			<a href="{{route('gallery.show', $item['gallery_id'])}}" target="_blank" class="text-info">
 				{{ $item['gallery_name'] }}
 			</a>
