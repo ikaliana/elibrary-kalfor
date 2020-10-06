@@ -44,6 +44,8 @@
 							<a href="{{route('gallery.show', $doc['gallery_id'])}}" class="text-info my-0 font-weight-normal" target="_blank">
 								{{ $doc['gallery_name'] }}
 							</a>
+							@else
+							N/A
 							@endif
 						</span>
 						<span class="d-block mt-1">{{ $doc['description'] }}</span>
