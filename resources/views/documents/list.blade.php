@@ -15,6 +15,7 @@
 			padding-bottom: 20px;
 		}*/
 	</style>
+	@include('documents.pagingcss')
 @endsection
 
 @section('main_content')
@@ -26,7 +27,7 @@
 	</h2>
 
 	<div id="document-container">
-		<div class="row row-cols-1">
+		<div class="row row-cols-1" id="list-container">
 			<ul class="list-unstyled">
 			@foreach($list as $doc)
 				@php
@@ -60,6 +61,7 @@
 
 @section('js')
 
+	@include('documents.pagingjs')
 	@include('documents.filterjs')
 
 @endsection
