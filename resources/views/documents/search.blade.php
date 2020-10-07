@@ -15,6 +15,7 @@
 			padding-bottom: 20px;
 		}
 	</style>
+	@include('documents.pagingcss')
 @endsection
 
 @section('main_content')
@@ -28,7 +29,7 @@
 	<p>Searching for <span style="font-weight: bold;">'{{ $key }}'</span>. Found {{ count($list) }} document(s) matching the search query.</p>
 
 	<div id="document-container">
-		<div class="row row-cols-1">
+		<div class="row row-cols-1" id="list-container">
 			<ul class="list-unstyled">
 			@foreach($list as $doc)
 				@php
@@ -60,6 +61,7 @@
 
 @section('js')
 
+	@include('documents.pagingjs')
 	@include('documents.filterjs')
 
 @endsection
