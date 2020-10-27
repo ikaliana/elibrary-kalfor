@@ -95,9 +95,26 @@ class GalleryController extends Controller
 
         $this->validate_owner($request, $gallery);
 
-        $gallery->delete();
+        try {
+            \DB::beginTransaction();
 
-        return response()->json(null, 204);
+            $gallery->documents()->delete();
+            $gallery->delete();
+
+            \DB::commit();
+            return response()->json(null, 204);
+
+        } catch (Throwable $e) {
+            \DB::rollback();
+
+            $response = [
+                'message' => 'Something wrong while deleting gallery. Please see error log for detail',
+                'errors' => 'Failed to delete galery and its documents!'
+            ];
+
+            return response()->json($response,400)->send();
+        }
+
     }
 
 
