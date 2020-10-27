@@ -145,6 +145,19 @@
   </div>
 </div>
 
+<div class="modal fade modal-mini modal-warning" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p id="body-text-confirm">Delete gallery?</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-link btn-neutral btn-confirm-ok">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Scripts -->
