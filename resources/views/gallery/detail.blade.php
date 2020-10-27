@@ -147,12 +147,9 @@
 		location.href = location.href + "/edit";
 	});
 
-	$(".btn-delete").on("click", function() {
-		var r = confirm("Delete gallery?");
+	function ConfirmDeleteGallery() {
 		var item = { };
 		item["_token"] =  $('#token').val();
-
-		if(!r) return;
 
 		$("#modalspinner").modal('show');
 
@@ -175,6 +172,15 @@
 		.always(function() {
 			$("#modalspinner").modal('hide');
 		});
+	}
+
+	$(".btn-delete").on("click", function() {
+		// var r = confirm("Delete gallery?");
+		// if(!r) return;
+		$('#body-text-confirm').html("The documents under this gallery will be deleted also!<br><br>Delete this gallery?");
+		$('.btn-confirm-ok').off("click", "**");
+		$('.btn-confirm-ok').on("click",function() { $("#modalConfirm").modal('hide'); ConfirmDeleteGallery(); });
+		$("#modalConfirm").modal('show');
 	});
 
 	$(".btn-cancel").on("click", function() {
