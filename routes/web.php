@@ -29,4 +29,9 @@ Route::get('documents/types', 'Web\DocumentController@types')->name('documents.t
 Route::post('documents/save', 'Web\DocumentController@store')->name('documents.save');
 Route::get('documents/search', 'Web\DocumentController@search')->name('documents.search');
 
+Route::get('login', 'SsoController@Login')->name('login');
+Route::get('logout', 'SsoController@Logout')->name('logout');
+Route::get('callback', 'SsoController@Callback');
+// Route::get('/me', 'SsoController@GetUserInfo');
+
 Route::get('/', 'Web\DocumentController@recent')->name('home');
