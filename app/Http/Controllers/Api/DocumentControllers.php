@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use wapmorgan\MediaFile\MediaFile;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class DocumentControllers extends Controller
 {
@@ -233,7 +235,9 @@ class DocumentControllers extends Controller
 
     private function get_current_user_id(Request $request)
     {
-        return 1;
+        $user_info = $this->Userinfo($request);
+
+        return $user_info["id"];
     }
 
     private function validate_owner(Request $request, $document)
@@ -315,5 +319,41 @@ class DocumentControllers extends Controller
         return $document;
     }
 
-    
+    protected function InitClient() {
+        return new Client([
+            'verify' => false,
+            'curl' => [
+                CURLOPT_SSL_VERIFYHOST => false,
+                CURLOPT_SSL_VERIFYPEER => false
+            ]
+        ]);
+    }
+
+    protected function OpenRequest($method, $url, $params) {
+        $client = $this->InitClient();
+
+        try {
+            $response = $client->request($method, $url, $params);
+            return $response;
+        } catch (RequestException $e) {
+            if($e->getCode() == 401) return $e->getResponse();
+            else abort($e->getCode(), $e->getResponse()->getBody());
+        }
+    }
+
+    protected function Userinfo(Request $request) {
+        $response = $this->OpenRequest('GET',env('SSO_SERVER_URL').'api/user', 
+            ['headers' => [
+                'Authorization' => 'Bearer '.$request->bearerToken(),
+                'Accept' => 'application/json',
+                ]
+            ]);
+
+        $statusCode = $response->getStatusCode();
+
+        if($statusCode == '200') 
+            return json_decode((string) $response->getBody(), true);
+        else 
+            abort($statusCode, $response->getBody());
+    }
 }
