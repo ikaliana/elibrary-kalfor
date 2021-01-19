@@ -79,11 +79,24 @@
               <p>Galleries</p>
             </a>
           </li>
+
+          @if($loginfo['islogin'])
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="now-ui-icons users_circle-08"></i>
+              <p>{{ $loginfo['name'] }}</p>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+            </div>
+          </li>
+          @else
           <li class="nav-item">
-            <a class="nav-link btn btn-neutral" href="#">
+            <a class="nav-link btn btn-neutral" href="{{ route('login') }}">
               <p>Login</p>
             </a>
           </li>
+          @endif
         </ul>
       </div>
     </div>
