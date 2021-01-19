@@ -70,10 +70,10 @@
 			<a class="btn btn-primary btn-download" href="{{ $filepath }}" target="_blank">
 				<i class="fas fa-download"></i> Download
 			</a>
-			<button type="button" class="btn btn-primary btn-edit">
+			<button type="button" class="btn btn-primary btn-edit d-none">
 				<i class="fas fa-edit"></i> Edit
 			</button>
-			<button type="button" class="btn btn-primary btn-delete">
+			<button type="button" class="btn btn-primary btn-delete d-none">
 				<i class="fas fa-trash-alt"></i> Delete
 			</button>
 		</p>
