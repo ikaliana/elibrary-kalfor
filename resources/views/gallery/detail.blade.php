@@ -25,6 +25,8 @@
 		<p>{{ $item['description'] }}</p>
 	</div>
 
+	@if($loginfo['is_klhk'])
+		@if( $loginfo['is_admin'] || $loginfo['id'] == $item['user_id'] )
 	<div id="gallery-footer">
 		<p align="center">
 			<button type="button" class="btn btn-primary btn-edit" data-toggle="tooltip" data-placement="top" title="Edit gallery">
@@ -35,6 +37,8 @@
 			</button>
 		</p>
 	</div>
+		@endif
+	@endif
 @else
 	<form>
 		<div class="form-group">
@@ -67,11 +71,15 @@
 	<h4 class="title">
 		Documents ({{ count($item['documents']) }})
 		
+		@if($loginfo['is_klhk'])
+			@if( $loginfo['is_admin'] || $loginfo['id'] == $item['user_id'] )
 		<div class="btn-group float-right" role="group">
 			<button type="button" class="btn btn-primary btn-sm btn-add-document" data-toggle="tooltip" data-placement="left" title="Add document">
 				<i class="now-ui-icons ui-1_simple-add"></i>
 			</button>
 		</div>
+			@endif
+		@endif
 
 		<hr>
 	</h4>
@@ -127,6 +135,7 @@
 			"data": item,
 		})
 		.done(function( msg ) {
+			console.log(msg);
 			msg = eval(msg);
 
 			$('#body-text').text("Gallery has been saved successfully");
