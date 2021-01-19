@@ -17,9 +17,13 @@
 @section('main_content')
 	<h2 class="title">
 		Galleries
+
+		@if($loginfo['is_klhk'])
 		<a class="btn btn-primary btn-sm float-right btn-add" href="{{route('gallery.create')}}">
 			<i class="now-ui-icons ui-1_simple-add"></i>
 		</a>
+		@endif
+		
 		<hr>
 	</h2>
 
