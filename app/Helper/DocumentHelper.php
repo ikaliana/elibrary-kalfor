@@ -36,7 +36,7 @@ class DocumentHelper extends ApiHelper
 
 	    $response = $this->OpenRequest('GET', $url,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -60,7 +60,7 @@ class DocumentHelper extends ApiHelper
 
 	    $response = $this->OpenRequest('GET', $url,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -76,7 +76,7 @@ class DocumentHelper extends ApiHelper
 	{
 	    $response = $this->OpenRequest('GET', $this->api_url.'/'.$id ,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -114,7 +114,7 @@ class DocumentHelper extends ApiHelper
 	    $response = $this->OpenRequest($method, $url,
 	    	[
 	    		'headers' => [
-		            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+		            'Authorization' => 'Bearer '.session()->get('token.access_token'),
 		            'Accept' => 'application/json',
 		        	]
 		        ,'multipart' => $params
@@ -131,7 +131,7 @@ class DocumentHelper extends ApiHelper
 	{
 	    $response = $this->OpenRequest("DELETE", $this->api_url.'/'.$id,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -148,7 +148,7 @@ class DocumentHelper extends ApiHelper
 	    $response = $this->OpenRequest('GET', $this->api_url.'/search' ,
 	    	[
 	    		'headers' => [
-		            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+		            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 		            'Accept' => 'application/json',
 	        	],
 	        	'query' => ['key' => $keyword]
@@ -166,7 +166,7 @@ class DocumentHelper extends ApiHelper
 	    $response = $this->OpenRequest('GET', $this->api_url.'/recent' ,
 	    	[
 	    		'headers' => [
-		            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+		            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 		            'Accept' => 'application/json',
 	        	]
 	    	]);
