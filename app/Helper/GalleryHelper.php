@@ -21,7 +21,7 @@ class GalleryHelper extends ApiHelper
 	{
 	    $response = $this->OpenRequest('GET', $this->api_url,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -37,7 +37,7 @@ class GalleryHelper extends ApiHelper
 	{
 	    $response = $this->OpenRequest('GET', $this->api_url.'/'.$id ,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            // 'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
@@ -58,7 +58,7 @@ class GalleryHelper extends ApiHelper
 	    $response = $this->OpenRequest($method, $url,
 	    	[
 	    		'headers' => [
-		            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+		            'Authorization' => 'Bearer '.session()->get('token.access_token'),
 		            'Accept' => 'application/json',
 		        	]
 		        ,'form_params' => ['name'=>$gallery->name,'description'=>$gallery->description,'visibility'=>$gallery->visibility]
@@ -75,7 +75,7 @@ class GalleryHelper extends ApiHelper
 	{
 	    $response = $this->OpenRequest("DELETE", $this->api_url.'/'.$id,
 	    	['headers' => [
-	            //'Authorization' => 'Bearer '.session()->get('token.access_token'),
+	            'Authorization' => 'Bearer '.session()->get('token.access_token'),
 	            'Accept' => 'application/json',
 	        	]
 	    	]);
